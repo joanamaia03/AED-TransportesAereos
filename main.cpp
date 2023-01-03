@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Airport.h"
 #include "Control_Tower.h"
 
 int main() {

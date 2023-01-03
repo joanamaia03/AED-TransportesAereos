@@ -6,3 +6,7 @@ Airline::Airline(string code, string name, string callsign, string country) {
     this->callsign=callsign;
     this->country=country;
 }
+
+Airline::Airline() {
+
+}
