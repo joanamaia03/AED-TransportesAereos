@@ -1,7 +1,3 @@
-//
-// Created by Pedro on 03/01/2023.
-//
-
 #include <fstream>
 #include <sstream>
 #include "Control_Tower.h"
