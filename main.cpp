@@ -15,7 +15,9 @@ int main() {
 
         }
         else if(n==2){
-
+            cout<<"Introduza o codigo do aeroporto: "<<endl;
+            string code;
+            cin>>code;
         }
         else if(n>3){
             cout<<"Introduza uma opcao valia: "<<endl;
