@@ -1,5 +1,6 @@
 #include <queue>
 #include <iostream>
+#include <unordered_set>
 #include "Graph.h"
 
 Graph::Graph() {}
@@ -8,7 +9,17 @@ void Graph::addEdge(string src, string dest, string airline) {
     nodes[src].destinies.push_back({dest,airline});
 }
 
-vector<string> Graph::shortesPath(string start, string destinie){
+bool Graph::isIn(string n, vector<string> vec){
+    if(vec.empty()) return true;
+    for(string s : vec){
+        if (s==n) return true;
+    }
+    return false;
+}
+
+
+
+vector<string> Graph::shortesPath(const vector<string>& start_vec, const vector<string>& destinies_vec, const vector<string>& user_airlines){
     vector<string> path;
     auto it = nodes.begin();
     while (it!=nodes.end()){
@@ -16,31 +27,76 @@ vector<string> Graph::shortesPath(string start, string destinie){
         it->second.parent="###";
         it++;
     }
-    if(nodes[start].parent!="###") return path;
+
     queue<string> q;
-    q.push(start);
-    nodes[start].visited= true;
+    for(string s : start_vec){
+        if(nodes[s].parent!="###") return path;
+        q.push(s);
+        nodes[s].visited= true;
+    }
+
+
     while (!q.empty()){
         string u = q.front();
         q.pop();
-        if(u == destinie) break;
-        for(Edge edge : nodes[u].destinies){
-            if (!nodes[edge.dest].visited){
-                nodes[edge.dest].visited= true;
-                q.push(edge.dest);
-                nodes[edge.dest].parent=u;
-                nodes[edge.dest].parent_airline=edge.airline;
+        bool flag = false;
+        for(string s : destinies_vec){
+            if(u == s) {
+                path.push_back(s);
+                flag = true;
+                break;
+            }
+        }
+        if (flag) break;
+        else {
+            for (Edge edge: nodes[u].destinies) {
+                if (!nodes[edge.dest].visited && isIn(edge.airline, user_airlines)) {
+                    nodes[edge.dest].visited = true;
+                    q.push(edge.dest);
+                    nodes[edge.dest].parent = u;
+                    nodes[edge.dest].parent_airline = edge.airline;
+                }
             }
         }
     }
+    if(path.empty()) {
+        path.push_back("Error message");
+        return path;
+    }
+    string u = path[0];
 
-    string u = destinie;
-    path.push_back(u);
-    if(nodes[u].parent=="") return path;
     while (nodes[u].parent!="###"){
         path.push_back(nodes[u].parent_airline);
         path.push_back((nodes[u].parent));
         u=nodes[u].parent;
     }
     return path;
+}
+
+int Graph::FlightsPerAirport(string airport_code) {
+    return nodes[airport_code].destinies.size();
+}
+
+int Graph::TargetsPerAirport(string airport_code) {
+    unordered_set<string> sett;
+    for(Edge edge : nodes[airport_code].destinies){
+        sett.insert(edge.dest);
+    }
+    return sett.size();
+}
+
+int Graph::AirlinesPerAirport(string airport_code) {
+    unordered_set<string> sett;
+    for(Edge edge : nodes[airport_code].destinies){
+        sett.insert(edge.airline);
+    }
+    return sett.size();
+}
+
+vector<string> Graph::CountriesPerAirport(string airport_code) {
+    vector<string> vec;
+    for(Edge edge : nodes[airport_code].destinies){
+        vec.push_back(edge.dest);
+    }
+    return vec;
 }

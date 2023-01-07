@@ -5,6 +5,7 @@
 #include <list>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
@@ -27,7 +28,13 @@ public:
     Graph();
     void addEdge(string src , string dest, string airline);
 
-    vector<string> shortesPath(string start, string destinie);
+    vector<string> shortesPath(const vector<string>& start, const vector<string>& destinie, const vector<string>& user_airlines);
+    bool isIn(string n, vector<string> vec);
+
+    int FlightsPerAirport(string airport_code);
+    int TargetsPerAirport(string airport_code);
+    int AirlinesPerAirport(string airport_code);
+    vector<string> CountriesPerAirport(string basicString);
 };
 
 
