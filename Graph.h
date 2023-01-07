@@ -31,10 +31,12 @@ public:
     vector<string> shortesPath(const vector<string>& start, const vector<string>& destinie, const vector<string>& user_airlines);
     bool isIn(string n, vector<string> vec);
 
-    int FlightsPerAirport(string airport_code);
-    int TargetsPerAirport(string airport_code);
-    int AirlinesPerAirport(string airport_code);
-    vector<string> CountriesPerAirport(string basicString);
+    int flightsPerAirport(string airport_code);
+    int targetsPerAirport(string airport_code);
+    int airlinesPerAirport(string airport_code);
+    vector<string> countriesPerAirport(string basicString);
+
+    vector<string> howManyAirports(string code, int n);
 };
 
 

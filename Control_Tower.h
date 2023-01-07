@@ -25,10 +25,14 @@ public:
 
     static double haversine(double lat1, double lon1, double lat2, double lon2);
 
-    void FlightsPerAirport(string airport_code);
-    void TargetsPerAirport(string airport_code);
-    void AirlinesPerAirport(string airport_code);
-    void CountriesPerAirport(string airport_code);
+    void flightsPerAirport(string airport_code);
+    void targetsPerAirport(string airport_code);
+    void airlinesPerAirport(string airport_code);
+    void countriesPerAirport(string airport_code);
+
+    void targetsAfterN(string airport_code, int n);
+    void citiesAfterN(string airport_code, int n);
+    void countriesAfterN(string airport_code, int n);
 
 };
 

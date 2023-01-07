@@ -258,30 +258,56 @@ double Control_Tower::haversine(double lat1, double lon1,double lat2, double lon
     return rad * c;
 }
 
-void Control_Tower::FlightsPerAirport(string airport_code) {
-    int i = flights.FlightsPerAirport(airport_code);
+void Control_Tower::flightsPerAirport(string airport_code) {
+    int i = flights.flightsPerAirport(airport_code);
     cout<<"Numero de voos a partir do aeroporto "<<airports[airport_code].getName()<<":"<<i<<'\n';
     cout<<"<----------------------->\n";
 }
 
-void Control_Tower::TargetsPerAirport(string airport_code) {
-    int res = flights.TargetsPerAirport(airport_code);
+void Control_Tower::targetsPerAirport(string airport_code) {
+    int res = flights.targetsPerAirport(airport_code);
     cout<<"Numero de voos com destinos diferentes: "<<res<<'\n';
     cout<<"<----------------------->\n";
 }
 
-void Control_Tower::AirlinesPerAirport(string airport_code) {
-    int res = flights.AirlinesPerAirport(airport_code);
+void Control_Tower::airlinesPerAirport(string airport_code) {
+    int res = flights.airlinesPerAirport(airport_code);
     cout<<"Numero de voos de companhias areas diferentes: "<<res<<'\n';
     cout<<"<----------------------->\n";
 }
 
-void Control_Tower::CountriesPerAirport(string airport_code) {
-    vector<string> vec = flights.CountriesPerAirport(airport_code);
+void Control_Tower::countriesPerAirport(string airport_code) {
+    vector<string> vec = flights.countriesPerAirport(airport_code);
     unordered_set<string> countries;
     for(string s : vec){
         countries.insert(airports[s].getCountry());
     }
-    cout<<"Numero de de voos para paises diferentes: "<<countries.size()<<'\n';
+    cout<<"Numero de voos para paises diferentes: "<<countries.size()<<'\n';
+    cout<<"<----------------------->\n";
+}
+
+void Control_Tower::targetsAfterN(string airport_code, int n) {
+    vector<string> vec = flights.howManyAirports(airport_code,n);
+    cout<<"Numero de aeroportos atingiveis em "<<n<<" voos: "<<vec.size()<<'\n';
+    cout<<"<----------------------->\n";
+}
+
+void Control_Tower::citiesAfterN(string airport_code, int n) {
+    vector<string> vec = flights.howManyAirports(airport_code,n);
+    unordered_set<string> cities;
+    for(string s : vec){
+        cities.insert(airports[s].getCity());
+    }
+    cout<<"Numero de cidades atingiveis em "<<n<<" voos: "<<cities.size()<<'\n';
+    cout<<"<----------------------->\n";
+}
+
+void Control_Tower::countriesAfterN(string airport_code, int n) {
+    vector<string> vec = flights.howManyAirports(airport_code,n);
+    unordered_set<string> countries;
+    for(string s : vec){
+        countries.insert(airports[s].getCountry());
+    }
+    cout<<"Numero de paises atingiveis em "<<n<<" voos: "<<countries.size()<<'\n';
     cout<<"<----------------------->\n";
 }

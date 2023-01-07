@@ -97,32 +97,62 @@ int main() {
             cout<<"Opcao 2: Numero de voos para destinos diferentes num dado aeroporto\n";
             cout<<"Opcao 3: Numero de voos com companhias areas diferentes num dado aeroporto\n";
             cout<<"Opcao 4: Numero de voos para paises diferentes num dado aeroporto\n";
-            cout<<"Opcao 5: Cancelar operacao\n";
+            cout<<"Opcao 5: Numero de aeroportos disponiveis depois de N voos\n";
+            cout<<"Opcao 6: Numero de cidades disponiveis depois de N voos\n";
+            cout<<"Opcao 7: Numero de paises disponiveis depois de N voos\n";
+            cout<<"Opcao 8: Cancelar operacao\n";
             int s;
             cin>>s;
             if (s==1){
-                cout<<"Insira o codigo do aeroporto\n";
+                cout<<"Insira o codigo do aeroporto:\n";
                 string code;
                 cin>>code;
-                control_tower.FlightsPerAirport(code);
+                control_tower.flightsPerAirport(code);
             }
             if (s==2){
-                cout<<"Insira o codigo do aeroporto\n";
+                cout<<"Insira o codigo do aeroporto:\n";
                 string code;
                 cin>>code;
-                control_tower.TargetsPerAirport(code);
+                control_tower.targetsPerAirport(code);
             }
             if (s==3){
-                cout<<"Insira o codigo do aeroporto\n";
+                cout<<"Insira o codigo do aeroporto:\n";
                 string code;
                 cin>>code;
-                control_tower.AirlinesPerAirport(code);
+                control_tower.airlinesPerAirport(code);
             }
             if (s==4){
-                cout<<"Insira o codigo do aeroporto\n";
+                cout<<"Insira o codigo do aeroporto:\n";
                 string code;
                 cin>>code;
-                control_tower.CountriesPerAirport(code);
+                control_tower.countriesPerAirport(code);
+            }
+            if (s==5){
+                cout<<"Insira o codigo do aeroporto:\n";
+                string code;
+                cin>>code;
+                cout<<"Insira o numero de voos:\n";
+                int n;
+                cin>>n;
+                control_tower.targetsAfterN(code,n);
+            }
+            if (s==6){
+                cout<<"Insira o codigo do aeroporto:\n";
+                string code;
+                cin>>code;
+                cout<<"Insira o numero de voos:\n";
+                int n;
+                cin>>n;
+                control_tower.citiesAfterN(code,n);
+            }
+            if (s==7){
+                cout<<"Insira o codigo do aeroporto:\n";
+                string code;
+                cin>>code;
+                cout<<"Insira o numero de voos:\n";
+                int n;
+                cin>>n;
+                control_tower.countriesAfterN(code,n);
             }
             else{
                 continue;

@@ -73,11 +73,11 @@ vector<string> Graph::shortesPath(const vector<string>& start_vec, const vector<
     return path;
 }
 
-int Graph::FlightsPerAirport(string airport_code) {
+int Graph::flightsPerAirport(string airport_code) {
     return nodes[airport_code].destinies.size();
 }
 
-int Graph::TargetsPerAirport(string airport_code) {
+int Graph::targetsPerAirport(string airport_code) {
     unordered_set<string> sett;
     for(Edge edge : nodes[airport_code].destinies){
         sett.insert(edge.dest);
@@ -85,7 +85,7 @@ int Graph::TargetsPerAirport(string airport_code) {
     return sett.size();
 }
 
-int Graph::AirlinesPerAirport(string airport_code) {
+int Graph::airlinesPerAirport(string airport_code) {
     unordered_set<string> sett;
     for(Edge edge : nodes[airport_code].destinies){
         sett.insert(edge.airline);
@@ -93,10 +93,39 @@ int Graph::AirlinesPerAirport(string airport_code) {
     return sett.size();
 }
 
-vector<string> Graph::CountriesPerAirport(string airport_code) {
+vector<string> Graph::countriesPerAirport(string airport_code) {
     vector<string> vec;
     for(Edge edge : nodes[airport_code].destinies){
         vec.push_back(edge.dest);
+    }
+    return vec;
+}
+
+vector<string> Graph::howManyAirports(string code, int n){
+    vector<string> vec;
+    auto it = nodes.begin();
+    while (it!=nodes.end()){
+        it->second.visited=false;
+        it->second.distance=0;
+        it++;
+    }
+
+    queue<string> q;
+    q.push(code);
+    nodes[code].visited= true;
+    while (!q.empty()){
+        string u = q.front();
+        q.pop();
+        vec.push_back(u);
+        if(nodes[u].distance<n) {
+            for (Edge edge: nodes[u].destinies) {
+                if (!nodes[edge.dest].visited) {
+                    nodes[edge.dest].visited = true;
+                    q.push(edge.dest);
+                    nodes[edge.dest].distance=nodes[u].distance + 1;
+                }
+            }
+        }
     }
     return vec;
 }
