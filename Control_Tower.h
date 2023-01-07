@@ -16,6 +16,8 @@ public:
     void Read_Flights();
     void Read_Airlines();
     void Read_Airports();
+
+    void ClosestPath(string start, string destenie);
 };
 
 

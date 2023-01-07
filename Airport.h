@@ -15,7 +15,12 @@ class Airport {
 public:
     Airport();
     Airport(string code, string name, string city, string country, float latitude, float longitude);
-
+    string getCode();
+    string getName();
+    string getCity();
+    string getCountry();
+    float getLatitude();
+    float getLongitude();
 };
 
 

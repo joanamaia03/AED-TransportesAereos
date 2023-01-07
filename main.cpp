@@ -12,7 +12,13 @@ int main() {
         cout<<"Insira a sua opcao: ";
         cin>>n;
         if(n==1){
-
+            cout<<"Insira ponto de partida:\n";
+            string a;
+            cin>>a;
+            cout<<"Insira destino:\n";
+            string b;
+            cin>>b;
+            control_tower.ClosestPath(a,b);
         }
         else if(n==2){
 

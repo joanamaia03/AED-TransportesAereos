@@ -16,12 +16,18 @@ class Graph {
 
     struct Node {
         list<Edge> destinies;
+        bool visited;
+        int distance;
+        string parent;
+        string parent_airline;
     };
 
     unordered_map<string,Node> nodes;
 public:
     Graph();
     void addEdge(string src , string dest, string airline);
+
+    vector<string> shortesPath(string start, string destinie);
 };
 
 

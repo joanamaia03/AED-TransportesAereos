@@ -12,3 +12,27 @@ Airport::Airport(string code, string name, string city, string country, float la
 Airport::Airport() {
 
 }
+
+string Airport::getName() {
+    return name;
+}
+
+string Airport::getCode() {
+    return code;
+}
+
+string Airport::getCity() {
+    return  city;
+}
+
+string Airport::getCountry() {
+    return country;
+}
+
+float Airport::getLatitude() {
+    return latitude;
+}
+
+float Airport::getLongitude() {
+    return longitude;
+}

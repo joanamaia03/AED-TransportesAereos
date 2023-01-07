@@ -1,5 +1,6 @@
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include "Control_Tower.h"
 
 Control_Tower::Control_Tower() {
@@ -107,5 +108,29 @@ void Control_Tower::Read_Airlines(){
     }
 }
 
+void Control_Tower::ClosestPath(string start, string destinie){
+    vector<string> vec = flights.shortesPath(start, destinie);
+
+    int i = vec.size() - 1;
+    if (i==-1) {
+        cout<<"Start point not found\n";
+        return;
+    }
+    if (i==0) {
+        cout<<"Destinie not found or destination is the same as the stating point\n";
+        return;
+    }
+    while(i > 0){
+        cout<<"Airport:"<<airports[vec[i]].getName()<<'\n';
+        i--;
+        cout<<"  |  \n";
+        cout<<"  |  \n";
+        cout<<"Airline:"<<airlines[vec[i]].getName()<<'\n';
+        i--;
+        cout<<"  |  \n";
+        cout<<"  V  \n";
+    }
+    cout<<"Airport:"<<airports[vec[i]].getName()<<'\n';
+}
 
 
