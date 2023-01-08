@@ -29,10 +29,10 @@ string Airport::getCountry() {
     return country;
 }
 
-float Airport::getLatitude() {
+double Airport::getLatitude() {
     return latitude;
 }
 
-float Airport::getLongitude() {
+double Airport::getLongitude() {
     return longitude;
 }
