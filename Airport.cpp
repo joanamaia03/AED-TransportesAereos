@@ -1,6 +1,6 @@
 #include "Airport.h"
 
-Airport::Airport(string code, string name, string city, string country, float latitude, float longitude) {
+Airport::Airport(string code, string name, string city, string country, double latitude, double longitude) {
     this->code=code;
     this->name=name;
     this->city=city;
@@ -11,4 +11,28 @@ Airport::Airport(string code, string name, string city, string country, float la
 
 Airport::Airport() {
 
+}
+
+string Airport::getName() {
+    return name;
+}
+
+string Airport::getCode() {
+    return code;
+}
+
+string Airport::getCity() {
+    return  city;
+}
+
+string Airport::getCountry() {
+    return country;
+}
+
+float Airport::getLatitude() {
+    return latitude;
+}
+
+float Airport::getLongitude() {
+    return longitude;
 }
